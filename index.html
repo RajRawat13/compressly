@@ -1,1087 +1,839 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Compressly - Free Online Image Compressor</title>
-  <meta name="description" content="Compress JPG, PNG and WebP images online for free. Reduce image size while maintaining quality. Fast, private and easy to use." />
-  <meta name="keywords" content="image compressor, compress image, JPG compressor, PNG compressor, WebP compressor, reduce image size" />
-  <meta name="robots" content="index, follow" />
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --primary: #5b5bf7;
-      --primary-dark: #4545d8;
-      --text: #171725;
-      --muted: #707080;
-      --border: #e7e7ef;
-      --bg: #f7f8fc;
-      --white: #ffffff;
-      --success: #159447;
-    }
-
-    body {
-      font-family: Inter, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    header {
-      background: rgba(255,255,255,.95);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(10px);
-    }
-
-    .navbar {
-      max-width: 1150px;
-      margin: auto;
-      padding: 17px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-size: 25px;
-      font-weight: 800;
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    nav {
-      display: flex;
-      gap: 25px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #40404d;
-      font-weight: 600;
-      font-size: 14px;
-    }
-
-    nav a:hover {
-      color: var(--primary);
-    }
-
-    .hero {
-      text-align: center;
-      padding: 70px 20px 35px;
-      max-width: 850px;
-      margin: auto;
-    }
-
-    .badge {
-      display: inline-block;
-      background: #ececff;
-      color: var(--primary);
-      padding: 7px 13px;
-      border-radius: 50px;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-size: clamp(38px, 7vw, 65px);
-      line-height: 1.05;
-      letter-spacing: -2px;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 span {
-      color: var(--primary);
-    }
-
-    .hero p {
-      max-width: 650px;
-      margin: auto;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .tool-section {
-      max-width: 850px;
-      margin: 25px auto 70px;
-      padding: 0 20px;
-    }
-
-    .compressor {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 25px;
-      box-shadow: 0 15px 50px rgba(30,30,80,.07);
-    }
-
-    .drop-zone {
-      border: 2px dashed #cfcfe4;
-      border-radius: 18px;
-      min-height: 280px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 30px;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .drop-zone:hover,
-    .drop-zone.dragover {
-      border-color: var(--primary);
-      background: #f7f7ff;
-    }
-
-    .upload-icon {
-      width: 70px;
-      height: 70px;
-      margin: 0 auto 15px;
-      border-radius: 20px;
-      background: #ededff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-    }
-
-    .drop-zone h2 {
-      font-size: 22px;
-      margin-bottom: 7px;
-    }
-
-    .drop-zone p {
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .choose-btn,
-    .compress-btn,
-    .download-btn,
-    .reset-btn {
-      border: 0;
-      cursor: pointer;
-      border-radius: 12px;
-      padding: 13px 22px;
-      font-size: 15px;
-      font-weight: 700;
-      transition: .2s;
-    }
-
-    .choose-btn,
-    .compress-btn,
-    .download-btn {
-      color: white;
-      background: var(--primary);
-    }
-
-    .choose-btn:hover,
-    .compress-btn:hover,
-    .download-btn:hover {
-      background: var(--primary-dark);
-      transform: translateY(-1px);
-    }
-
-    .reset-btn {
-      background: #eeeeF5;
-      color: #333;
-    }
-
-    #fileInput {
-      display: none;
-    }
-
-    .controls {
-      display: none;
-      margin-top: 25px;
-    }
-
-    .controls.active {
-      display: block;
-    }
-
-    .file-info {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-      padding: 15px;
-      background: #f7f7fb;
-      border-radius: 14px;
-      margin-bottom: 22px;
-    }
-
-    .file-preview {
-      width: 75px;
-      height: 75px;
-      object-fit: cover;
-      border-radius: 10px;
-      background: #ddd;
-    }
-
-    .file-details {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .file-name {
-      font-weight: 700;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .file-size {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .quality-box {
-      margin-bottom: 20px;
-    }
-
-    .quality-top {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
-
-    #qualityValue {
-      color: var(--primary);
-    }
-
-    input[type="range"] {
-      width: 100%;
-      accent-color: var(--primary);
-      cursor: pointer;
-    }
-
-    .range-labels {
-      display: flex;
-      justify-content: space-between;
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 5px;
-    }
-
-    .compress-btn {
-      width: 100%;
-      padding: 15px;
-      font-size: 16px;
-    }
-
-    .result {
-      display: none;
-      margin-top: 25px;
-      border-top: 1px solid var(--border);
-      padding-top: 25px;
-    }
-
-    .result.active {
-      display: block;
-    }
-
-    .result-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-
-    .result-card {
-      padding: 18px;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-    }
-
-    .result-card small {
-      display: block;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-
-    .result-card strong {
-      font-size: 21px;
-    }
-
-    .saved {
-      color: var(--success);
-    }
-
-    .result-buttons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .download-btn {
-      flex: 1;
-    }
-
-    .reset-btn {
-      padding: 13px 20px;
-    }
-
-    .features {
-      max-width: 1100px;
-      margin: 0 auto 80px;
-      padding: 0 20px;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .section-title h2 {
-      font-size: 34px;
-      margin-bottom: 7px;
-    }
-
-    .section-title p {
-      color: var(--muted);
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .feature-card {
-      background: white;
-      border: 1px solid var(--border);
-      padding: 25px;
-      border-radius: 18px;
-    }
-
-    .feature-card .icon {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    .feature-card h3 {
-      margin-bottom: 7px;
-    }
-
-    .feature-card p {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .info {
-      max-width: 900px;
-      margin: 0 auto 70px;
-      padding: 0 20px;
-    }
-
-    .info-box {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 30px;
-    }
-
-    .info-box h2 {
-      margin-bottom: 12px;
-    }
-
-    .info-box p {
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    footer {
-      background: #11111b;
-      color: #bbb;
-      padding: 35px 20px;
-      text-align: center;
-    }
-
-    footer .footer-logo {
-      color: white;
-      font-size: 23px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    footer p {
-      font-size: 13px;
-    }
-
-    @media (max-width: 700px) {
-      nav {
-        gap: 12px;
-      }
-
-      nav a {
-        font-size: 12px;
-      }
-
-      .hero {
-        padding-top: 45px;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      .compressor {
-        padding: 15px;
-      }
-
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .result-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .file-info {
-        align-items: flex-start;
-      }
-
-      .result-buttons {
-        flex-direction: column;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ShortsTitle AI - YouTube Shorts Title Generator</title>
+<meta name="description" content="Generate catchy and viral YouTube Shorts titles instantly. Free YouTube Shorts Title Generator.">
+<meta name="keywords" content="YouTube Shorts title generator, viral title generator, Shorts titles, YouTube title generator">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#080808;
+    color:#fff;
+    min-height:100vh;
+}
+
+header{
+    border-bottom:1px solid #222;
+    padding:18px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    background:rgba(8,8,8,.95);
+    backdrop-filter:blur(10px);
+    z-index:10;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:800;
+}
+
+.logo span{
+    color:#ff1744;
+}
+
+nav a{
+    color:#aaa;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:14px;
+}
+
+nav a:hover{
+    color:#fff;
+}
+
+.hero{
+    text-align:center;
+    padding:75px 20px 35px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 15px;
+    border:1px solid #333;
+    border-radius:50px;
+    color:#ff416c;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(38px,7vw,72px);
+    line-height:1;
+    max-width:900px;
+    margin:auto;
+    font-weight:900;
+}
+
+.hero h1 span{
+    color:#ff1744;
+}
+
+.hero p{
+    color:#999;
+    max-width:650px;
+    margin:20px auto;
+    line-height:1.6;
+}
+
+.container{
+    width:92%;
+    max-width:900px;
+    margin:30px auto 80px;
+}
+
+.generator{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:22px;
+    padding:28px;
+    box-shadow:0 20px 70px rgba(0,0,0,.35);
+}
+
+label{
+    display:block;
+    color:#ccc;
+    font-size:14px;
+    margin-bottom:9px;
+}
+
+textarea,select{
+    width:100%;
+    background:#090909;
+    color:#fff;
+    border:1px solid #333;
+    border-radius:12px;
+    padding:15px;
+    outline:none;
+    font-size:15px;
+    margin-bottom:20px;
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+textarea:focus,select:focus{
+    border-color:#ff1744;
+}
+
+.options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.generate{
+    width:100%;
+    padding:16px;
+    border-radius:12px;
+    background:#ff1744;
+    color:#fff;
+    font-size:16px;
+    transition:.2s;
+}
+
+.generate:hover{
+    background:#ff3159;
+    transform:translateY(-1px);
+}
+
+.results{
+    margin-top:30px;
+    display:none;
+}
+
+.results-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.results-head h2{
+    font-size:22px;
+}
+
+.copy-all{
+    background:#222;
+    color:#fff;
+    padding:10px 15px;
+    border-radius:9px;
+}
+
+.title-card{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:14px;
+    padding:16px;
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.title-text{
+    flex:1;
+    line-height:1.45;
+    font-size:15px;
+}
+
+.copy{
+    background:#222;
+    color:#fff;
+    padding:9px 12px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.copy:hover,.copy-all:hover{
+    background:#333;
+}
+
+.copied{
+    background:#168a55!important;
+}
+
+.info{
+    text-align:center;
+    padding:60px 20px;
+    max-width:800px;
+    margin:auto;
+}
+
+.info h2{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.info p{
+    color:#999;
+    line-height:1.7;
+}
+
+.faq{
+    max-width:800px;
+    margin:0 auto 80px;
+    padding:0 20px;
+}
+
+.faq h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+details{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:12px;
+    padding:17px;
+    margin-bottom:10px;
+}
+
+summary{
+    cursor:pointer;
+    font-weight:700;
+}
+
+details p{
+    color:#999;
+    line-height:1.6;
+    margin-top:12px;
+}
+
+footer{
+    border-top:1px solid #222;
+    text-align:center;
+    padding:30px 20px;
+    color:#777;
+    font-size:13px;
+}
+
+footer a{
+    color:#999;
+    margin:0 8px;
+}
+
+@media(max-width:600px){
+    header{
+        padding:16px 5%;
+    }
+
+    nav{
+        display:none;
+    }
+
+    .hero{
+        padding-top:55px;
+    }
+
+    .generator{
+        padding:20px;
+    }
+
+    .options{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .title-card{
+        align-items:flex-start;
+    }
+
+    .copy{
+        padding:8px;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <div class="navbar">
-    <a href="#" class="logo">Compressly</a>
+    <div class="logo">ShortsTitle <span>AI</span></div>
 
     <nav>
-      <a href="#compressor">Compressor</a>
-      <a href="#features">Features</a>
-      <a href="#about">About</a>
+        <a href="#generator">Generator</a>
+        <a href="#how">How It Works</a>
+        <a href="#faq">FAQ</a>
     </nav>
-  </div>
 </header>
 
-<main>
-
-  <section class="hero">
-    <div class="badge">⚡ Free Online Image Compressor</div>
+<section class="hero">
+    <div class="badge">⚡ Free • No API Required</div>
 
     <h1>
-      Compress Images.<br>
-      <span>Keep Quality.</span>
+        Create <span>Viral</span><br>
+        YouTube Shorts Titles
     </h1>
 
     <p>
-      Reduce your image file size quickly and easily.
-      Your images are processed directly in your browser.
+        Enter your video topic and generate catchy, clickable and
+        Shorts-friendly titles in seconds.
     </p>
-  </section>
+</section>
 
-  <section class="tool-section" id="compressor">
+<main class="container" id="generator">
 
-    <div class="compressor">
+    <div class="generator">
 
-      <label class="drop-zone" id="dropZone">
+        <label for="topic">What is your Short about?</label>
 
-        <div>
-          <div class="upload-icon">🖼️</div>
+        <textarea id="topic"
+        placeholder="Example: Funny dog playing with a kid"></textarea>
 
-          <h2>Drop your image here</h2>
+        <div class="options">
 
-          <p>or choose an image from your device</p>
+            <div>
+                <label for="language">Language</label>
 
-          <span class="choose-btn">
-            Choose Image
-          </span>
-
-          <input
-            type="file"
-            id="fileInput"
-            accept="image/jpeg,image/png,image/webp"
-          />
-
-        </div>
-
-      </label>
-
-      <div class="controls" id="controls">
-
-        <div class="file-info">
-
-          <img
-            id="preview"
-            class="file-preview"
-            alt="Image preview"
-          />
-
-          <div class="file-details">
-
-            <div
-              class="file-name"
-              id="fileName">
-              image.jpg
+                <select id="language">
+                    <option value="hinglish">Hinglish</option>
+                    <option value="english">English</option>
+                    <option value="hindi">Hindi</option>
+                </select>
             </div>
 
-            <div
-              class="file-size"
-              id="originalSize">
-              0 KB
+            <div>
+                <label for="style">Title Style</label>
+
+                <select id="style">
+                    <option value="viral">🔥 Viral</option>
+                    <option value="curiosity">👀 Curiosity</option>
+                    <option value="funny">😂 Funny</option>
+                    <option value="shock">😱 Shock</option>
+                    <option value="emotional">❤️ Emotional</option>
+                </select>
             </div>
 
-          </div>
-
         </div>
 
-        <div class="quality-box">
-
-          <div class="quality-top">
-            <span>Compression Quality</span>
-            <span id="qualityValue">80%</span>
-          </div>
-
-          <input
-            type="range"
-            id="quality"
-            min="10"
-            max="100"
-            value="80"
-          />
-
-          <div class="range-labels">
-            <span>Smaller File</span>
-            <span>Better Quality</span>
-          </div>
-
-        </div>
-
-        <button
-          class="compress-btn"
-          id="compressBtn">
-          Compress Image
+        <button class="generate" onclick="generateTitles()">
+            🚀 Generate Titles
         </button>
 
-      </div>
+    </div>
 
-      <div class="result" id="result">
+    <div class="results" id="results">
 
-        <div class="result-grid">
+        <div class="results-head">
+            <h2>Generated Titles</h2>
 
-          <div class="result-card">
-            <small>Original Size</small>
-            <strong id="beforeSize">0 KB</strong>
-          </div>
-
-          <div class="result-card">
-            <small>Compressed Size</small>
-            <strong id="afterSize">0 KB</strong>
-          </div>
-
-          <div class="result-card">
-            <small>You Saved</small>
-            <strong
-              class="saved"
-              id="savedPercent">
-              0%
-            </strong>
-          </div>
-
-          <div class="result-card">
-            <small>Format</small>
-            <strong id="outputFormat">JPG</strong>
-          </div>
-
+            <button class="copy-all" onclick="copyAll()">
+                📋 Copy All
+            </button>
         </div>
 
-        <div class="result-buttons">
-
-          <button
-            class="download-btn"
-            id="downloadBtn">
-            ⬇ Download Compressed Image
-          </button>
-
-          <button
-            class="reset-btn"
-            id="resetBtn">
-            Compress Another
-          </button>
-
-        </div>
-
-      </div>
+        <div id="titleList"></div>
 
     </div>
-
-  </section>
-
-  <section class="features" id="features">
-
-    <div class="section-title">
-      <h2>Why Compressly?</h2>
-      <p>Everything you need to optimize your images.</p>
-    </div>
-
-    <div class="feature-grid">
-
-      <div class="feature-card">
-        <div class="icon">⚡</div>
-        <h3>Fast Compression</h3>
-        <p>
-          Compress images quickly without complicated settings.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="icon">🔒</div>
-        <h3>Private & Secure</h3>
-        <p>
-          Images are processed directly inside your browser.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="icon">📱</div>
-        <h3>Mobile Friendly</h3>
-        <p>
-          Works smoothly on phones, tablets and desktop devices.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="icon">🆓</div>
-        <h3>100% Free</h3>
-        <p>
-          Compress images without registration or subscriptions.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="icon">🎯</div>
-        <h3>Easy to Use</h3>
-        <p>
-          Upload, choose quality, compress and download.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="icon">🖼️</div>
-        <h3>Popular Formats</h3>
-        <p>
-          Supports JPG, PNG and WebP image formats.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-  <section class="info" id="about">
-
-    <div class="info-box">
-
-      <h2>Free Online Image Compressor</h2>
-
-      <p>
-        Compressly is a simple online image compression tool
-        designed to reduce image file sizes while keeping
-        the image quality as good as possible.
-      </p>
-
-      <p>
-        Upload your JPG, PNG or WebP image, select your preferred
-        compression quality and download the optimized image.
-      </p>
-
-      <p>
-        For privacy, the compression process happens locally
-        in your browser rather than uploading the image to a
-        remote server.
-      </p>
-
-    </div>
-
-  </section>
 
 </main>
 
+<section class="info" id="how">
+    <h2>How It Works</h2>
+
+    <p>
+        Enter your YouTube Shorts topic, select your preferred language
+        and title style, then click Generate Titles. The tool instantly
+        creates multiple title ideas that you can copy and use for your
+        Shorts.
+    </p>
+</section>
+
+<section class="faq" id="faq">
+
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+        <summary>Is this YouTube title generator free?</summary>
+        <p>Yes. You can generate titles completely free.</p>
+    </details>
+
+    <details>
+        <summary>Do I need an API key?</summary>
+        <p>No. This version works directly inside your browser and does not require an API key.</p>
+    </details>
+
+    <details>
+        <summary>Can I use these titles on YouTube?</summary>
+        <p>Yes. You can copy the generated ideas and customize them for your own videos.</p>
+    </details>
+
+    <details>
+        <summary>Does it work on mobile?</summary>
+        <p>Yes. The website is fully responsive and works on phones, tablets and computers.</p>
+    </details>
+
+</section>
+
 <footer>
-
-  <div class="footer-logo">Compressly</div>
-
-  <p>
-    © 2026 Compressly. Free online image compression tool.
-  </p>
-
+    © 2026 ShortsTitle AI. All rights reserved.
+    <br><br>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms</a>
 </footer>
-
 
 <script>
 
-  const fileInput = document.getElementById("fileInput");
-  const dropZone = document.getElementById("dropZone");
+const templates = {
 
-  const controls = document.getElementById("controls");
-  const result = document.getElementById("result");
+    viral: {
+        english: [
+            "You Won't Believe What Happened! 🔥",
+            "This Changed Everything! 😱",
+            "The Ending Was INSANE! 🤯",
+            "Everyone Is Talking About This! 👀",
+            "This Is Why You Need To See It! 🔥",
+            "Wait Until You See The End! 😳",
+            "Nobody Expected This! 😱",
+            "This Went Completely Wrong! 😂",
+            "Internet Can't Stop Watching This! 🔥",
+            "You Have To See This! 👀"
+        ],
 
-  const preview = document.getElementById("preview");
+        hinglish: [
+            "Ye Dekhkar Tum Bhi Shock Ho Jaoge! 😱",
+            "Bhai Ye Kya Ho Gaya! 😂",
+            "Aage Jo Hua Wo Insane Tha! 🤯",
+            "Iska Ending Dekhna Mat Bhoolna! 👀",
+            "Ye Video Internet Par Viral Ho Gaya! 🔥",
+            "Kisi Ne Socha Bhi Nahi Tha Ye Hoga! 😳",
+            "Ye Scene Dekhkar Sab Hairaan Reh Gaye! 😱",
+            "Bhai Last Tak Zaroor Dekhna! 🔥",
+            "Aisa Kaise Ho Sakta Hai? 🤯",
+            "Ye Moment Kabhi Nahi Bhoologe! ❤️"
+        ],
 
-  const fileName = document.getElementById("fileName");
-  const originalSize = document.getElementById("originalSize");
+        hindi: [
+            "यह देखकर आप भी हैरान रह जाएंगे! 😱",
+            "भाई ये क्या हो गया! 😂",
+            "आगे जो हुआ वो बेहद चौंकाने वाला था! 🤯",
+            "इसका अंत जरूर देखना! 👀",
+            "यह वीडियो वायरल हो गया! 🔥",
+            "किसी ने नहीं सोचा था ऐसा होगा! 😳",
+            "यह नज़ारा देखकर सब हैरान रह गए! 😱",
+            "आखिर तक जरूर देखना! 🔥",
+            "ऐसा कैसे हो सकता है? 🤯",
+            "यह पल कभी नहीं भूलोगे! ❤️"
+        ]
+    },
 
-  const quality = document.getElementById("quality");
-  const qualityValue = document.getElementById("qualityValue");
+    curiosity: {
+        english: [
+            "What Happens Next Will Shock You! 👀",
+            "Nobody Saw This Coming...",
+            "Wait... Did That Really Happen?",
+            "The Last 3 Seconds 😳",
+            "Can You Guess What Happens Next?",
+            "Something Unexpected Happened...",
+            "Watch Until The End 👀",
+            "This Wasn't Supposed To Happen!",
+            "Did You Notice This?",
+            "The Secret Nobody Knew..."
+        ],
 
-  const compressBtn = document.getElementById("compressBtn");
-  const downloadBtn = document.getElementById("downloadBtn");
-  const resetBtn = document.getElementById("resetBtn");
+        hinglish: [
+            "Aage Kya Hua? Tum Guess Nahi Kar Paoge! 👀",
+            "Kisi Ne Bhi Ye Expect Nahi Kiya Tha!",
+            "Wait... Ye Sach Mein Hua? 😳",
+            "Last Ke 3 Seconds Dekhna!",
+            "Guess Karo Aage Kya Hua? 👀",
+            "Phir Kuch Aisa Hua Jo Expected Nahi Tha!",
+            "End Tak Dekhna... 🔥",
+            "Ye Hone Wala Tha Kisi Ko Nahi Pata Tha!",
+            "Kya Tumne Ye Notice Kiya?",
+            "Iske Peeche Ka Secret Kya Hai? 🤯"
+        ],
 
-  const beforeSize = document.getElementById("beforeSize");
-  const afterSize = document.getElementById("afterSize");
-  const savedPercent = document.getElementById("savedPercent");
-  const outputFormat = document.getElementById("outputFormat");
+        hindi: [
+            "आगे क्या हुआ? आप सोच भी नहीं पाएंगे! 👀",
+            "किसी ने भी ऐसा होने की उम्मीद नहीं की थी!",
+            "रुको... क्या सच में ऐसा हुआ? 😳",
+            "आखिरी 3 सेकंड जरूर देखना!",
+            "बताओ आगे क्या हुआ? 👀",
+            "फिर कुछ ऐसा हुआ जिसकी उम्मीद नहीं थी!",
+            "अंत तक जरूर देखना! 🔥",
+            "किसी को पता ही नहीं था कि ऐसा होगा!",
+            "क्या आपने यह देखा?",
+            "इसके पीछे का राज़ क्या है? 🤯"
+        ]
+    },
 
-  let selectedFile = null;
-  let compressedBlob = null;
+    funny: {
+        english: [
+            "This Is The Funniest Thing Ever 😂",
+            "Bro Really Thought He Could Do It 😂",
+            "I Can't Stop Laughing At This!",
+            "When Everything Goes Wrong 😂",
+            "He Really Did That?! 🤣",
+            "This Was Too Funny To Ignore!",
+            "The Funniest Moment Ever 😂",
+            "Nobody Was Ready For This!",
+            "Bro Had One Job 😂",
+            "I Was NOT Expecting This!"
+        ],
 
+        hinglish: [
+            "Bhai Ne Ye Kya Kar Diya 😂",
+            "Isko Dekhkar Hansi Nahi Rukegi! 🤣",
+            "Bhai Ko Ek Hi Kaam Diya Tha 😂",
+            "Jab Sab Kuch Ulta Ho Jaye 😂",
+            "Ye Banda Alag Level Ka Hai 🤣",
+            "Aisa Kaun Karta Hai Bhai? 😂",
+            "Ye Moment Too Funny Tha! 🤣",
+            "Kisi Ne Expect Nahi Kiya Tha 😂",
+            "Bhai Ka Confidence Dekho 😂",
+            "Main To Haste Haste Pagal Ho Gaya! 🤣"
+        ],
 
-  /* -------------------------
-     Format file size
-  ------------------------- */
+        hindi: [
+            "भाई ने ये क्या कर दिया 😂",
+            "इसे देखकर हंसी नहीं रुकेगी! 🤣",
+            "भाई को सिर्फ एक काम दिया था 😂",
+            "जब सब कुछ उल्टा हो जाए 😂",
+            "ये बंदा अलग ही लेवल का है 🤣",
+            "ऐसा कौन करता है भाई? 😂",
+            "ये पल बहुत मजेदार था! 🤣",
+            "किसी ने इसकी उम्मीद नहीं की थी 😂",
+            "भाई का कॉन्फिडेंस देखो 😂",
+            "हंसी रोकना मुश्किल है! 🤣"
+        ]
+    },
 
-  function formatSize(bytes) {
+    shock: {
+        english: [
+            "OMG! What Just Happened?! 😱",
+            "This Was Absolutely Shocking! 🤯",
+            "I Still Can't Believe This!",
+            "The Most Unexpected Moment! 😳",
+            "This Got Out Of Control FAST!",
+            "Nobody Was Ready For This! 😱",
+            "The Craziest Thing Just Happened!",
+            "This Changed In Seconds! 🤯",
+            "You Need To See This!",
+            "WHAT?! 😳"
+        ],
 
-    if (bytes === 0) return "0 Bytes";
+        hinglish: [
+            "OMG! Ye Kya Ho Gaya?! 😱",
+            "Ye To Bahut Zyada Shocking Tha! 🤯",
+            "Mujhe Abhi Tak Believe Nahi Ho Raha!",
+            "Aisa Moment Kabhi Nahi Dekha! 😳",
+            "Sab Kuch Seconds Mein Badal Gaya!",
+            "Kisi Ko Bhi Iski Ummeed Nahi Thi! 😱",
+            "Ye To Had Hi Ho Gayi! 🤯",
+            "Sirf Kuch Seconds Mein Sab Badal Gaya!",
+            "Tumhe Ye Zaroor Dekhna Chahiye!",
+            "WHAT?! Bhai 😳"
+        ],
 
-    const units = [
-      "Bytes",
-      "KB",
-      "MB",
-      "GB"
-    ];
+        hindi: [
+            "हे भगवान! ये क्या हो गया?! 😱",
+            "यह बेहद चौंकाने वाला था! 🤯",
+            "मुझे अभी तक विश्वास नहीं हो रहा!",
+            "ऐसा पल कभी नहीं देखा! 😳",
+            "कुछ ही सेकंड में सब बदल गया!",
+            "किसी को इसकी उम्मीद नहीं थी! 😱",
+            "ये तो हद ही हो गई! 🤯",
+            "सिर्फ कुछ सेकंड में सब बदल गया!",
+            "आपको यह जरूर देखना चाहिए!",
+            "क्या?! 😳"
+        ]
+    },
 
-    const index =
-      Math.floor(
-        Math.log(bytes) /
-        Math.log(1024)
-      );
+    emotional: {
+        english: [
+            "This Moment Made Everyone Emotional ❤️",
+            "I Wasn't Ready For This Ending 😭",
+            "The Most Beautiful Moment ❤️",
+            "This Will Touch Your Heart",
+            "You Won't Forget This Moment",
+            "A Moment Full Of Emotions ❤️",
+            "This Is What True Love Looks Like",
+            "The Ending Made Me Cry 😭",
+            "Pure Happiness ❤️",
+            "One Moment, So Many Emotions"
+        ],
 
-    return (
-      parseFloat(
-        (bytes / Math.pow(1024, index))
-        .toFixed(2)
-      )
-      + " "
-      + units[index]
-    );
-  }
+        hinglish: [
+            "Ye Moment Dil Chhoo Lega ❤️",
+            "Ending Dekhkar Aankhon Mein Aansu Aa Jayenge 😭",
+            "Ye Pal Hamesha Yaad Rahega ❤️",
+            "Dil Se Beautiful Moment ❤️",
+            "Is Ending Ke Liye Ready Nahi Tha 😭",
+            "Ye Hai Asli Happiness ❤️",
+            "Is Moment Ne Sabko Emotional Kar Diya",
+            "Ye Video Dil Mein Bas Jayegi ❤️",
+            "Ek Moment, Itni Saari Feelings ❤️",
+            "True Emotions ❤️"
+        ],
 
-
-  /* -------------------------
-     Select File
-  ------------------------- */
-
-  fileInput.addEventListener(
-    "change",
-    function () {
-
-      if (this.files.length > 0) {
-        loadFile(this.files[0]);
-      }
-
+        hindi: [
+            "यह पल दिल छू लेगा ❤️",
+            "अंत देखकर आंखों में आंसू आ जाएंगे 😭",
+            "यह पल हमेशा याद रहेगा ❤️",
+            "दिल को छू लेने वाला पल ❤️",
+            "मैं इस अंत के लिए तैयार नहीं था 😭",
+            "यही है असली खुशी ❤️",
+            "इस पल ने सबको भावुक कर दिया",
+            "यह वीडियो दिल में बस जाएगी ❤️",
+            "एक पल, इतनी सारी भावनाएं ❤️",
+            "सच्ची भावनाएं ❤️"
+        ]
     }
-  );
 
+};
 
-  /* -------------------------
-     Load File
-  ------------------------- */
+function cleanTopic(topic){
+    topic = topic.trim();
 
-  function loadFile(file) {
-
-    if (!file.type.startsWith("image/")) {
-
-      alert("Please choose a valid image file.");
-
-      return;
+    if(topic.length > 70){
+        topic = topic.substring(0,70);
     }
 
-    selectedFile = file;
+    return topic;
+}
 
-    fileName.textContent = file.name;
+function generateTitles(){
 
-    originalSize.textContent =
-      formatSize(file.size);
+    const topicInput = document.getElementById("topic");
+    const language = document.getElementById("language").value;
+    const style = document.getElementById("style").value;
 
-    preview.src =
-      URL.createObjectURL(file);
+    const topic = cleanTopic(topicInput.value);
 
-    controls.classList.add("active");
-
-    result.classList.remove("active");
-
-    compressedBlob = null;
-  }
-
-
-  /* -------------------------
-     Drag & Drop
-  ------------------------- */
-
-  [
-    "dragenter",
-    "dragover"
-  ].forEach(eventName => {
-
-    dropZone.addEventListener(
-      eventName,
-      function(e) {
-
-        e.preventDefault();
-
-        dropZone.classList.add("dragover");
-
-      }
-    );
-
-  });
-
-
-  [
-    "dragleave",
-    "drop"
-  ].forEach(eventName => {
-
-    dropZone.addEventListener(
-      eventName,
-      function(e) {
-
-        e.preventDefault();
-
-        dropZone.classList.remove("dragover");
-
-      }
-    );
-
-  });
-
-
-  dropZone.addEventListener(
-    "drop",
-    function(e) {
-
-      const files = e.dataTransfer.files;
-
-      if (files.length > 0) {
-        loadFile(files[0]);
-      }
-
-    }
-  );
-
-
-  /* -------------------------
-     Quality Slider
-  ------------------------- */
-
-  quality.addEventListener(
-    "input",
-    function() {
-
-      qualityValue.textContent =
-        this.value + "%";
-
-    }
-  );
-
-
-  /* -------------------------
-     Compress Image
-  ------------------------- */
-
-  compressBtn.addEventListener(
-    "click",
-    function() {
-
-      if (!selectedFile) {
-
-        alert("Please choose an image first.");
-
+    if(!topic){
+        alert("Please enter your video topic first.");
+        topicInput.focus();
         return;
-      }
-
-      compressImage();
-
     }
-  );
 
+    let selected = templates[style][language];
 
-  function compressImage() {
+    let titles = selected.map(title => {
 
-    compressBtn.textContent =
-      "Compressing...";
+        let result = title;
 
-    compressBtn.disabled = true;
+        const keywords = [
+            topic,
+            topic.charAt(0).toUpperCase() + topic.slice(1)
+        ];
 
-    const img = new Image();
+        const randomKeyword =
+            keywords[Math.floor(Math.random() * keywords.length)];
 
-    img.onload = function() {
+        if(language === "english"){
+            result = randomKeyword + " - " + result;
+        }
+        else if(language === "hinglish"){
+            result = randomKeyword + " | " + result;
+        }
+        else{
+            result = randomKeyword + " | " + result;
+        }
 
-      const canvas =
-        document.createElement("canvas");
+        return result;
+    });
 
-      const ctx =
-        canvas.getContext("2d");
+    titles = shuffle(titles);
 
-      canvas.width = img.naturalWidth;
-      canvas.height = img.naturalHeight;
+    displayTitles(titles);
+}
 
-      ctx.drawImage(
-        img,
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      );
+function shuffle(array){
 
-      /*
-        JPEG output gives predictable
-        compression behaviour.
-      */
+    let copy = [...array];
 
-      const qualityValueNumber =
-        Number(quality.value) / 100;
+    for(let i = copy.length - 1; i > 0; i--){
 
-      canvas.toBlob(
-        function(blob) {
+        let j = Math.floor(Math.random() * (i + 1));
 
-          if (!blob) {
-
-            alert(
-              "Compression failed. Please try another image."
-            );
-
-            compressBtn.textContent =
-              "Compress Image";
-
-            compressBtn.disabled = false;
-
-            return;
-          }
-
-          compressedBlob = blob;
-
-          beforeSize.textContent =
-            formatSize(selectedFile.size);
-
-          afterSize.textContent =
-            formatSize(blob.size);
-
-          let saved =
-            ((selectedFile.size - blob.size)
-            / selectedFile.size) * 100;
-
-          /*
-            If compression increases the file,
-            display 0% saved.
-          */
-
-          if (saved < 0) {
-            saved = 0;
-          }
-
-          savedPercent.textContent =
-            saved.toFixed(1) + "%";
-
-          outputFormat.textContent =
-            "JPG";
-
-          result.classList.add("active");
-
-          compressBtn.textContent =
-            "Compress Image";
-
-          compressBtn.disabled = false;
-
-          result.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-          });
-
-        },
-        "image/jpeg",
-        qualityValueNumber
-      );
-
-    };
-
-    img.onerror = function() {
-
-      alert(
-        "Unable to read this image."
-      );
-
-      compressBtn.textContent =
-        "Compress Image";
-
-      compressBtn.disabled = false;
-
-    };
-
-    img.src =
-      URL.createObjectURL(selectedFile);
-
-  }
-
-
-  /* -------------------------
-     Download
-  ------------------------- */
-
-  downloadBtn.addEventListener(
-    "click",
-    function() {
-
-      if (!compressedBlob) {
-        return;
-      }
-
-      const url =
-        URL.createObjectURL(compressedBlob);
-
-      const link =
-        document.createElement("a");
-
-      link.href = url;
-
-      const baseName =
-        selectedFile.name
-        .replace(/\.[^/.]+$/, "");
-
-      link.download =
-        baseName + "-compressed.jpg";
-
-      document.body.appendChild(link);
-
-      link.click();
-
-      link.remove();
-
-      URL.revokeObjectURL(url);
-
+        [copy[i],copy[j]] = [copy[j],copy[i]];
     }
-  );
 
+    return copy;
+}
 
-  /* -------------
+function displayTitles(titles){
+
+    const list = document.getElementById("titleList");
+    const results = document.getElementById("results");
+
+    list.innerHTML = "";
+
+    titles.forEach((title,index) => {
+
+        const card = document.createElement("div");
+
+        card.className = "title-card";
+
+        card.innerHTML = `
+            <div class="title-text">
+                <strong>${index + 1}.</strong> ${escapeHTML(title)}
+            </div>
+
+            <button class="copy"
+            onclick="copyText(this, ${JSON.stringify(title)})">
+                Copy
+            </button>
+        `;
+
+        list.appendChild(card);
+    });
+
+    results.style.display = "block";
+
+    results.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+}
+
+function escapeHTML(text){
+
+    return text
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+function copyText(button,text){
+
+    navigator.clipboard.writeText(text)
+    .then(() => {
+
+        button.textContent = "✓ Copied";
+        button.classList.add("copied");
+
+        setTimeout(() => {
+            button.textContent = "Copy";
+            button.classList.remove("copied");
+        },1500);
+
+    })
+    .catch(() => {
+
+        const temp = document.createElement("textarea");
+        temp.value = text;
+
+        document.body.appendChild(temp);
+        temp.select();
+
+        document.execCommand("copy");
+
+        temp.remove();
+
+        button.textContent = "✓ Copied";
+
+        setTimeout(() => {
+            button.textContent = "Copy";
+        },1500);
+    });
+}
+
+function copyAll(){
+
+    const cards = document.querySelectorAll(".title-text");
+
+    let all = [];
+
+    cards.forEach(card => {
+
+        let text = card.innerText;
+
+        text = text.replace(/^\d+\.\s*/,"");
+
+        all.push(text);
+    });
+
+    const finalText = all.join("\n");
+
+    navigator.clipboard.writeText(finalText)
+    .then(() => {
+
+        const button = document.querySelector(".copy-all");
+
+        button.textContent = "✓ Copied All";
+
+        setTimeout(() => {
+            button.textContent = "📋 Copy All";
+        },1500);
+
+    });
+}
+
+document.getElementById("topic").addEventListener("keydown",function(e){
+
+    if(e.ctrlKey && e.key === "Enter"){
+        generateTitles();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
