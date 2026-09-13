@@ -1,18 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ShortsTitle AI - YouTube Shorts Title Generator</title>
-<meta name="description" content="Generate catchy and viral YouTube Shorts titles instantly. Free YouTube Shorts Title Generator.">
-<meta name="keywords" content="YouTube Shorts title generator, viral title generator, Shorts titles, YouTube title generator">
+<title>YouTube Shorts Title Generator – Free Viral Titles | ShortsTitle AI</title>
+
+<meta name="description" content="Generate catchy and viral YouTube Shorts titles instantly. Free Shorts title generator for Hindi, English and Hinglish creators. No API required.">
+
+<meta name="keywords" content="YouTube Shorts Title Generator, Shorts Title Generator, YouTube Title Generator, Viral Shorts Titles, YouTube Shorts Titles, Hindi Shorts Titles, Hinglish Shorts Titles">
+
+<meta name="author" content="ShortsTitle AI">
+
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<link rel="canonical" href="https://rajrawat13.github.io/compressly/">
+
+<meta name="theme-color" content="#080808">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="YouTube Shorts Title Generator – ShortsTitle AI">
+<meta property="og:description" content="Create catchy and viral YouTube Shorts titles in seconds.">
+<meta property="og:url" content="https://rajrawat13.github.io/compressly/">
+<meta property="og:site_name" content="ShortsTitle AI">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YouTube Shorts Title Generator – ShortsTitle AI">
+<meta name="twitter:description" content="Generate viral YouTube Shorts titles for free.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ShortsTitle AI",
+  "url": "https://rajrawat13.github.io/compressly/",
+  "description": "Free YouTube Shorts Title Generator for creating catchy and viral Shorts titles.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
@@ -110,7 +153,8 @@ label{
     margin-bottom:9px;
 }
 
-textarea,select{
+textarea,
+select{
     width:100%;
     background:#090909;
     color:#fff;
@@ -127,7 +171,8 @@ textarea{
     resize:vertical;
 }
 
-textarea:focus,select:focus{
+textarea:focus,
+select:focus{
     border-color:#ff1744;
 }
 
@@ -206,7 +251,8 @@ button{
     white-space:nowrap;
 }
 
-.copy:hover,.copy-all:hover{
+.copy:hover,
+.copy-all:hover{
     background:#333;
 }
 
@@ -269,12 +315,8 @@ footer{
     font-size:13px;
 }
 
-footer a{
-    color:#999;
-    margin:0 8px;
-}
-
 @media(max-width:600px){
+
     header{
         padding:16px 5%;
     }
@@ -293,545 +335,578 @@ footer a{
 
     .options{
         grid-template-columns:1fr;
-        gap:0;
     }
 
     .title-card{
         align-items:flex-start;
     }
 
-    .copy{
-        padding:8px;
-    }
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-    <div class="logo">ShortsTitle <span>AI</span></div>
 
-    <nav>
-        <a href="#generator">Generator</a>
-        <a href="#how">How It Works</a>
-        <a href="#faq">FAQ</a>
-    </nav>
+<div class="logo">
+ShortsTitle <span>AI</span>
+</div>
+
+<nav>
+<a href="#generator">Generator</a>
+<a href="#how">How It Works</a>
+<a href="#faq">FAQ</a>
+</nav>
+
 </header>
 
 <section class="hero">
-    <div class="badge">⚡ Free • No API Required</div>
 
-    <h1>
-        Create <span>Viral</span><br>
-        YouTube Shorts Titles
-    </h1>
+<div class="badge">
+⚡ Free • No API Required
+</div>
 
-    <p>
-        Enter your video topic and generate catchy, clickable and
-        Shorts-friendly titles in seconds.
-    </p>
+<h1>
+Create <span>Viral</span><br>
+YouTube Shorts Titles
+</h1>
+
+<p>
+Generate catchy, clickable and Shorts-friendly titles
+for your videos in seconds.
+</p>
+
 </section>
 
 <main class="container" id="generator">
 
-    <div class="generator">
+<div class="generator">
 
-        <label for="topic">What is your Short about?</label>
+<label for="topic">
+What is your Short about?
+</label>
 
-        <textarea id="topic"
-        placeholder="Example: Funny dog playing with a kid"></textarea>
+<textarea
+id="topic"
+placeholder="Example: Funny dog video with a kid">
+</textarea>
 
-        <div class="options">
+<div class="options">
 
-            <div>
-                <label for="language">Language</label>
+<div>
 
-                <select id="language">
-                    <option value="hinglish">Hinglish</option>
-                    <option value="english">English</option>
-                    <option value="hindi">Hindi</option>
-                </select>
-            </div>
+<label for="language">
+Language
+</label>
 
-            <div>
-                <label for="style">Title Style</label>
+<select id="language">
 
-                <select id="style">
-                    <option value="viral">🔥 Viral</option>
-                    <option value="curiosity">👀 Curiosity</option>
-                    <option value="funny">😂 Funny</option>
-                    <option value="shock">😱 Shock</option>
-                    <option value="emotional">❤️ Emotional</option>
-                </select>
-            </div>
+<option value="hinglish">
+Hinglish
+</option>
 
-        </div>
+<option value="english">
+English
+</option>
 
-        <button class="generate" onclick="generateTitles()">
-            🚀 Generate Titles
-        </button>
+<option value="hindi">
+Hindi
+</option>
 
-    </div>
+</select>
 
-    <div class="results" id="results">
+</div>
 
-        <div class="results-head">
-            <h2>Generated Titles</h2>
+<div>
 
-            <button class="copy-all" onclick="copyAll()">
-                📋 Copy All
-            </button>
-        </div>
+<label for="style">
+Title Style
+</label>
 
-        <div id="titleList"></div>
+<select id="style">
 
-    </div>
+<option value="viral">
+🔥 Viral
+</option>
+
+<option value="curiosity">
+👀 Curiosity
+</option>
+
+<option value="funny">
+😂 Funny
+</option>
+
+<option value="shock">
+😱 Shock
+</option>
+
+<option value="emotional">
+❤️ Emotional
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+<button class="generate" onclick="generateTitles()">
+🚀 Generate Titles
+</button>
+
+</div>
+
+<div class="results" id="results">
+
+<div class="results-head">
+
+<h2>
+Generated Titles
+</h2>
+
+<button class="copy-all" onclick="copyAll()">
+📋 Copy All
+</button>
+
+</div>
+
+<div id="titleList"></div>
+
+</div>
 
 </main>
 
 <section class="info" id="how">
-    <h2>How It Works</h2>
 
-    <p>
-        Enter your YouTube Shorts topic, select your preferred language
-        and title style, then click Generate Titles. The tool instantly
-        creates multiple title ideas that you can copy and use for your
-        Shorts.
-    </p>
+<h2>
+How It Works
+</h2>
+
+<p>
+Enter your YouTube Shorts topic, select your preferred
+language and title style, and generate multiple catchy
+title ideas instantly. No account or API key is required.
+</p>
+
 </section>
 
 <section class="faq" id="faq">
 
-    <h2>Frequently Asked Questions</h2>
+<h2>
+Frequently Asked Questions
+</h2>
 
-    <details>
-        <summary>Is this YouTube title generator free?</summary>
-        <p>Yes. You can generate titles completely free.</p>
-    </details>
+<details>
 
-    <details>
-        <summary>Do I need an API key?</summary>
-        <p>No. This version works directly inside your browser and does not require an API key.</p>
-    </details>
+<summary>
+Is this YouTube title generator free?
+</summary>
 
-    <details>
-        <summary>Can I use these titles on YouTube?</summary>
-        <p>Yes. You can copy the generated ideas and customize them for your own videos.</p>
-    </details>
+<p>
+Yes. ShortsTitle AI is free to use.
+</p>
 
-    <details>
-        <summary>Does it work on mobile?</summary>
-        <p>Yes. The website is fully responsive and works on phones, tablets and computers.</p>
-    </details>
+</details>
+
+<details>
+
+<summary>
+Do I need an API key?
+</summary>
+
+<p>
+No. The title generator works directly inside your browser.
+</p>
+
+</details>
+
+<details>
+
+<summary>
+Can I use these titles on YouTube?
+</summary>
+
+<p>
+Yes. You can copy the generated title ideas and customize
+them for your YouTube Shorts.
+</p>
+
+</details>
+
+<details>
+
+<summary>
+Does it work on mobile?
+</summary>
+
+<p>
+Yes. The website is responsive and works on phones,
+tablets and desktop computers.
+</p>
+
+</details>
 
 </section>
 
 <footer>
-    © 2026 ShortsTitle AI. All rights reserved.
-    <br><br>
-    <a href="#">Privacy Policy</a>
-    <a href="#">Terms</a>
+
+© 2026 ShortsTitle AI. All rights reserved.
+
 </footer>
 
 <script>
 
 const templates = {
 
-    viral: {
-        english: [
-            "You Won't Believe What Happened! 🔥",
-            "This Changed Everything! 😱",
-            "The Ending Was INSANE! 🤯",
-            "Everyone Is Talking About This! 👀",
-            "This Is Why You Need To See It! 🔥",
-            "Wait Until You See The End! 😳",
-            "Nobody Expected This! 😱",
-            "This Went Completely Wrong! 😂",
-            "Internet Can't Stop Watching This! 🔥",
-            "You Have To See This! 👀"
-        ],
+viral:{
+english:[
+"You Won't Believe What Happened! 🔥",
+"This Changed Everything! 😱",
+"The Ending Was INSANE! 🤯",
+"Everyone Is Talking About This! 👀",
+"This Is Why You Need To See It! 🔥",
+"Wait Until You See The End! 😳",
+"Nobody Expected This! 😱",
+"This Went Completely Wrong! 😂",
+"Internet Can't Stop Watching This! 🔥",
+"You Have To See This! 👀"
+],
 
-        hinglish: [
-            "Ye Dekhkar Tum Bhi Shock Ho Jaoge! 😱",
-            "Bhai Ye Kya Ho Gaya! 😂",
-            "Aage Jo Hua Wo Insane Tha! 🤯",
-            "Iska Ending Dekhna Mat Bhoolna! 👀",
-            "Ye Video Internet Par Viral Ho Gaya! 🔥",
-            "Kisi Ne Socha Bhi Nahi Tha Ye Hoga! 😳",
-            "Ye Scene Dekhkar Sab Hairaan Reh Gaye! 😱",
-            "Bhai Last Tak Zaroor Dekhna! 🔥",
-            "Aisa Kaise Ho Sakta Hai? 🤯",
-            "Ye Moment Kabhi Nahi Bhoologe! ❤️"
-        ],
+hinglish:[
+"Ye Dekhkar Tum Bhi Shock Ho Jaoge! 😱",
+"Bhai Ye Kya Ho Gaya! 😂",
+"Aage Jo Hua Wo Insane Tha! 🤯",
+"Iska Ending Dekhna Mat Bhoolna! 👀",
+"Ye Video Internet Par Viral Ho Gaya! 🔥",
+"Kisi Ne Socha Bhi Nahi Tha Ye Hoga! 😳",
+"Ye Scene Dekhkar Sab Hairaan Reh Gaye! 😱",
+"Bhai Last Tak Zaroor Dekhna! 🔥",
+"Aisa Kaise Ho Sakta Hai? 🤯",
+"Ye Moment Kabhi Nahi Bhoologe! ❤️"
+],
 
-        hindi: [
-            "यह देखकर आप भी हैरान रह जाएंगे! 😱",
-            "भाई ये क्या हो गया! 😂",
-            "आगे जो हुआ वो बेहद चौंकाने वाला था! 🤯",
-            "इसका अंत जरूर देखना! 👀",
-            "यह वीडियो वायरल हो गया! 🔥",
-            "किसी ने नहीं सोचा था ऐसा होगा! 😳",
-            "यह नज़ारा देखकर सब हैरान रह गए! 😱",
-            "आखिर तक जरूर देखना! 🔥",
-            "ऐसा कैसे हो सकता है? 🤯",
-            "यह पल कभी नहीं भूलोगे! ❤️"
-        ]
-    },
+hindi:[
+"यह देखकर आप भी हैरान रह जाएंगे! 😱",
+"भाई ये क्या हो गया! 😂",
+"आगे जो हुआ वो बेहद चौंकाने वाला था! 🤯",
+"इसका अंत जरूर देखना! 👀",
+"यह वीडियो वायरल हो गया! 🔥",
+"किसी ने नहीं सोचा था ऐसा होगा! 😳",
+"यह नज़ारा देखकर सब हैरान रह गए! 😱",
+"आखिर तक जरूर देखना! 🔥",
+"ऐसा कैसे हो सकता है? 🤯",
+"यह पल कभी नहीं भूलोगे! ❤️"
+]
+},
 
-    curiosity: {
-        english: [
-            "What Happens Next Will Shock You! 👀",
-            "Nobody Saw This Coming...",
-            "Wait... Did That Really Happen?",
-            "The Last 3 Seconds 😳",
-            "Can You Guess What Happens Next?",
-            "Something Unexpected Happened...",
-            "Watch Until The End 👀",
-            "This Wasn't Supposed To Happen!",
-            "Did You Notice This?",
-            "The Secret Nobody Knew..."
-        ],
+curiosity:{
+english:[
+"What Happens Next Will Shock You! 👀",
+"Nobody Saw This Coming...",
+"Wait... Did That Really Happen?",
+"The Last 3 Seconds 😳",
+"Can You Guess What Happens Next?",
+"Something Unexpected Happened...",
+"Watch Until The End 👀",
+"This Wasn't Supposed To Happen!",
+"Did You Notice This?",
+"The Secret Nobody Knew..."
+],
 
-        hinglish: [
-            "Aage Kya Hua? Tum Guess Nahi Kar Paoge! 👀",
-            "Kisi Ne Bhi Ye Expect Nahi Kiya Tha!",
-            "Wait... Ye Sach Mein Hua? 😳",
-            "Last Ke 3 Seconds Dekhna!",
-            "Guess Karo Aage Kya Hua? 👀",
-            "Phir Kuch Aisa Hua Jo Expected Nahi Tha!",
-            "End Tak Dekhna... 🔥",
-            "Ye Hone Wala Tha Kisi Ko Nahi Pata Tha!",
-            "Kya Tumne Ye Notice Kiya?",
-            "Iske Peeche Ka Secret Kya Hai? 🤯"
-        ],
+hinglish:[
+"Aage Kya Hua? Tum Guess Nahi Kar Paoge! 👀",
+"Kisi Ne Bhi Ye Expect Nahi Kiya Tha!",
+"Wait... Ye Sach Mein Hua? 😳",
+"Last Ke 3 Seconds Dekhna!",
+"Guess Karo Aage Kya Hua? 👀",
+"Phir Kuch Aisa Hua Jo Expected Nahi Tha!",
+"End Tak Dekhna... 🔥",
+"Ye Hone Wala Tha Kisi Ko Nahi Pata Tha!",
+"Kya Tumne Ye Notice Kiya?",
+"Iske Peeche Ka Secret Kya Hai? 🤯"
+],
 
-        hindi: [
-            "आगे क्या हुआ? आप सोच भी नहीं पाएंगे! 👀",
-            "किसी ने भी ऐसा होने की उम्मीद नहीं की थी!",
-            "रुको... क्या सच में ऐसा हुआ? 😳",
-            "आखिरी 3 सेकंड जरूर देखना!",
-            "बताओ आगे क्या हुआ? 👀",
-            "फिर कुछ ऐसा हुआ जिसकी उम्मीद नहीं थी!",
-            "अंत तक जरूर देखना! 🔥",
-            "किसी को पता ही नहीं था कि ऐसा होगा!",
-            "क्या आपने यह देखा?",
-            "इसके पीछे का राज़ क्या है? 🤯"
-        ]
-    },
+hindi:[
+"आगे क्या हुआ? आप सोच भी नहीं पाएंगे! 👀",
+"किसी ने भी ऐसा होने की उम्मीद नहीं की थी!",
+"रुको... क्या सच में ऐसा हुआ? 😳",
+"आखिरी 3 सेकंड जरूर देखना!",
+"बताओ आगे क्या हुआ? 👀",
+"फिर कुछ ऐसा हुआ जिसकी उम्मीद नहीं थी!",
+"अंत तक जरूर देखना! 🔥",
+"किसी को पता ही नहीं था कि ऐसा होगा!",
+"क्या आपने यह देखा?",
+"इसके पीछे का राज़ क्या है? 🤯"
+]
+},
 
-    funny: {
-        english: [
-            "This Is The Funniest Thing Ever 😂",
-            "Bro Really Thought He Could Do It 😂",
-            "I Can't Stop Laughing At This!",
-            "When Everything Goes Wrong 😂",
-            "He Really Did That?! 🤣",
-            "This Was Too Funny To Ignore!",
-            "The Funniest Moment Ever 😂",
-            "Nobody Was Ready For This!",
-            "Bro Had One Job 😂",
-            "I Was NOT Expecting This!"
-        ],
+funny:{
+english:[
+"This Is The Funniest Thing Ever 😂",
+"Bro Really Thought He Could Do It 😂",
+"I Can't Stop Laughing At This!",
+"When Everything Goes Wrong 😂",
+"He Really Did That?! 🤣",
+"This Was Too Funny To Ignore!",
+"The Funniest Moment Ever 😂",
+"Nobody Was Ready For This!",
+"Bro Had One Job 😂",
+"I Was NOT Expecting This!"
+],
 
-        hinglish: [
-            "Bhai Ne Ye Kya Kar Diya 😂",
-            "Isko Dekhkar Hansi Nahi Rukegi! 🤣",
-            "Bhai Ko Ek Hi Kaam Diya Tha 😂",
-            "Jab Sab Kuch Ulta Ho Jaye 😂",
-            "Ye Banda Alag Level Ka Hai 🤣",
-            "Aisa Kaun Karta Hai Bhai? 😂",
-            "Ye Moment Too Funny Tha! 🤣",
-            "Kisi Ne Expect Nahi Kiya Tha 😂",
-            "Bhai Ka Confidence Dekho 😂",
-            "Main To Haste Haste Pagal Ho Gaya! 🤣"
-        ],
+hinglish:[
+"Bhai Ne Ye Kya Kar Diya 😂",
+"Isko Dekhkar Hansi Nahi Rukegi! 🤣",
+"Bhai Ko Ek Hi Kaam Diya Tha 😂",
+"Jab Sab Kuch Ulta Ho Jaye 😂",
+"Ye Banda Alag Level Ka Hai 🤣",
+"Aisa Kaun Karta Hai Bhai? 😂",
+"Ye Moment Too Funny Tha! 🤣",
+"Kisi Ne Expect Nahi Kiya Tha 😂",
+"Bhai Ka Confidence Dekho 😂",
+"Main To Haste Haste Pagal Ho Gaya! 🤣"
+],
 
-        hindi: [
-            "भाई ने ये क्या कर दिया 😂",
-            "इसे देखकर हंसी नहीं रुकेगी! 🤣",
-            "भाई को सिर्फ एक काम दिया था 😂",
-            "जब सब कुछ उल्टा हो जाए 😂",
-            "ये बंदा अलग ही लेवल का है 🤣",
-            "ऐसा कौन करता है भाई? 😂",
-            "ये पल बहुत मजेदार था! 🤣",
-            "किसी ने इसकी उम्मीद नहीं की थी 😂",
-            "भाई का कॉन्फिडेंस देखो 😂",
-            "हंसी रोकना मुश्किल है! 🤣"
-        ]
-    },
+hindi:[
+"भाई ने ये क्या कर दिया 😂",
+"इसे देखकर हंसी नहीं रुकेगी! 🤣",
+"भाई को सिर्फ एक काम दिया था 😂",
+"जब सब कुछ उल्टा हो जाए 😂",
+"ये बंदा अलग ही लेवल का है 🤣",
+"ऐसा कौन करता है भाई? 😂",
+"ये पल बहुत मजेदार था! 🤣",
+"किसी ने इसकी उम्मीद नहीं की थी 😂",
+"भाई का कॉन्फिडेंस देखो 😂",
+"हंसी रोकना मुश्किल है! 🤣"
+]
+},
 
-    shock: {
-        english: [
-            "OMG! What Just Happened?! 😱",
-            "This Was Absolutely Shocking! 🤯",
-            "I Still Can't Believe This!",
-            "The Most Unexpected Moment! 😳",
-            "This Got Out Of Control FAST!",
-            "Nobody Was Ready For This! 😱",
-            "The Craziest Thing Just Happened!",
-            "This Changed In Seconds! 🤯",
-            "You Need To See This!",
-            "WHAT?! 😳"
-        ],
+shock:{
+english:[
+"OMG! What Just Happened?! 😱",
+"This Was Absolutely Shocking! 🤯",
+"I Still Can't Believe This!",
+"The Most Unexpected Moment! 😳",
+"This Got Out Of Control FAST!",
+"Nobody Was Ready For This! 😱",
+"The Craziest Thing Just Happened!",
+"This Changed In Seconds! 🤯",
+"You Need To See This!",
+"WHAT?! 😳"
+],
 
-        hinglish: [
-            "OMG! Ye Kya Ho Gaya?! 😱",
-            "Ye To Bahut Zyada Shocking Tha! 🤯",
-            "Mujhe Abhi Tak Believe Nahi Ho Raha!",
-            "Aisa Moment Kabhi Nahi Dekha! 😳",
-            "Sab Kuch Seconds Mein Badal Gaya!",
-            "Kisi Ko Bhi Iski Ummeed Nahi Thi! 😱",
-            "Ye To Had Hi Ho Gayi! 🤯",
-            "Sirf Kuch Seconds Mein Sab Badal Gaya!",
-            "Tumhe Ye Zaroor Dekhna Chahiye!",
-            "WHAT?! Bhai 😳"
-        ],
+hinglish:[
+"OMG! Ye Kya Ho Gaya?! 😱",
+"Ye To Bahut Zyada Shocking Tha! 🤯",
+"Mujhe Abhi Tak Believe Nahi Ho Raha!",
+"Aisa Moment Kabhi Nahi Dekha! 😳",
+"Sab Kuch Seconds Mein Badal Gaya!",
+"Kisi Ko Bhi Iski Ummeed Nahi Thi! 😱",
+"Ye To Had Hi Ho Gayi! 🤯",
+"Sirf Kuch Seconds Mein Sab Badal Gaya!",
+"Tumhe Ye Zaroor Dekhna Chahiye!",
+"WHAT?! Bhai 😳"
+],
 
-        hindi: [
-            "हे भगवान! ये क्या हो गया?! 😱",
-            "यह बेहद चौंकाने वाला था! 🤯",
-            "मुझे अभी तक विश्वास नहीं हो रहा!",
-            "ऐसा पल कभी नहीं देखा! 😳",
-            "कुछ ही सेकंड में सब बदल गया!",
-            "किसी को इसकी उम्मीद नहीं थी! 😱",
-            "ये तो हद ही हो गई! 🤯",
-            "सिर्फ कुछ सेकंड में सब बदल गया!",
-            "आपको यह जरूर देखना चाहिए!",
-            "क्या?! 😳"
-        ]
-    },
+hindi:[
+"हे भगवान! ये क्या हो गया?! 😱",
+"यह बेहद चौंकाने वाला था! 🤯",
+"मुझे अभी तक विश्वास नहीं हो रहा!",
+"ऐसा पल कभी नहीं देखा! 😳",
+"कुछ ही सेकंड में सब बदल गया!",
+"किसी को इसकी उम्मीद नहीं थी! 😱",
+"ये तो हद ही हो गई! 🤯",
+"सिर्फ कुछ सेकंड में सब बदल गया!",
+"आपको यह जरूर देखना चाहिए!",
+"क्या?! 😳"
+]
+},
 
-    emotional: {
-        english: [
-            "This Moment Made Everyone Emotional ❤️",
-            "I Wasn't Ready For This Ending 😭",
-            "The Most Beautiful Moment ❤️",
-            "This Will Touch Your Heart",
-            "You Won't Forget This Moment",
-            "A Moment Full Of Emotions ❤️",
-            "This Is What True Love Looks Like",
-            "The Ending Made Me Cry 😭",
-            "Pure Happiness ❤️",
-            "One Moment, So Many Emotions"
-        ],
+emotional:{
+english:[
+"This Moment Made Everyone Emotional ❤️",
+"I Wasn't Ready For This Ending 😭",
+"The Most Beautiful Moment ❤️",
+"This Will Touch Your Heart",
+"You Won't Forget This Moment",
+"A Moment Full Of Emotions ❤️",
+"This Is What True Love Looks Like",
+"The Ending Made Me Cry 😭",
+"Pure Happiness ❤️",
+"One Moment, So Many Emotions"
+],
 
-        hinglish: [
-            "Ye Moment Dil Chhoo Lega ❤️",
-            "Ending Dekhkar Aankhon Mein Aansu Aa Jayenge 😭",
-            "Ye Pal Hamesha Yaad Rahega ❤️",
-            "Dil Se Beautiful Moment ❤️",
-            "Is Ending Ke Liye Ready Nahi Tha 😭",
-            "Ye Hai Asli Happiness ❤️",
-            "Is Moment Ne Sabko Emotional Kar Diya",
-            "Ye Video Dil Mein Bas Jayegi ❤️",
-            "Ek Moment, Itni Saari Feelings ❤️",
-            "True Emotions ❤️"
-        ],
+hinglish:[
+"Ye Moment Dil Chhoo Lega ❤️",
+"Ending Dekhkar Aankhon Mein Aansu Aa Jayenge 😭",
+"Ye Pal Hamesha Yaad Rahega ❤️",
+"Dil Se Beautiful Moment ❤️",
+"Is Ending Ke Liye Ready Nahi Tha 😭",
+"Ye Hai Asli Happiness ❤️",
+"Is Moment Ne Sabko Emotional Kar Diya",
+"Ye Video Dil Mein Bas Jayegi ❤️",
+"Ek Moment, Itni Saari Feelings ❤️",
+"True Emotions ❤️"
+],
 
-        hindi: [
-            "यह पल दिल छू लेगा ❤️",
-            "अंत देखकर आंखों में आंसू आ जाएंगे 😭",
-            "यह पल हमेशा याद रहेगा ❤️",
-            "दिल को छू लेने वाला पल ❤️",
-            "मैं इस अंत के लिए तैयार नहीं था 😭",
-            "यही है असली खुशी ❤️",
-            "इस पल ने सबको भावुक कर दिया",
-            "यह वीडियो दिल में बस जाएगी ❤️",
-            "एक पल, इतनी सारी भावनाएं ❤️",
-            "सच्ची भावनाएं ❤️"
-        ]
-    }
+hindi:[
+"यह पल दिल छू लेगा ❤️",
+"अंत देखकर आंखों में आंसू आ जाएंगे 😭",
+"यह पल हमेशा याद रहेगा ❤️",
+"दिल को छू लेने वाला पल ❤️",
+"मैं इस अंत के लिए तैयार नहीं था 😭",
+"यही है असली खुशी ❤️",
+"इस पल ने सबको भावुक कर दिया",
+"यह वीडियो दिल में बस जाएगी ❤️",
+"एक पल, इतनी सारी भावनाएं ❤️",
+"सच्ची भावनाएं ❤️"
+]
+}
 
 };
 
-function cleanTopic(topic){
-    topic = topic.trim();
+function escapeHTML(text){
 
-    if(topic.length > 70){
-        topic = topic.substring(0,70);
-    }
+return text
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
-    return topic;
-}
-
-function generateTitles(){
-
-    const topicInput = document.getElementById("topic");
-    const language = document.getElementById("language").value;
-    const style = document.getElementById("style").value;
-
-    const topic = cleanTopic(topicInput.value);
-
-    if(!topic){
-        alert("Please enter your video topic first.");
-        topicInput.focus();
-        return;
-    }
-
-    let selected = templates[style][language];
-
-    let titles = selected.map(title => {
-
-        let result = title;
-
-        const keywords = [
-            topic,
-            topic.charAt(0).toUpperCase() + topic.slice(1)
-        ];
-
-        const randomKeyword =
-            keywords[Math.floor(Math.random() * keywords.length)];
-
-        if(language === "english"){
-            result = randomKeyword + " - " + result;
-        }
-        else if(language === "hinglish"){
-            result = randomKeyword + " | " + result;
-        }
-        else{
-            result = randomKeyword + " | " + result;
-        }
-
-        return result;
-    });
-
-    titles = shuffle(titles);
-
-    displayTitles(titles);
 }
 
 function shuffle(array){
 
-    let copy = [...array];
+let copy=[...array];
 
-    for(let i = copy.length - 1; i > 0; i--){
+for(let i=copy.length-1;i>0;i--){
 
-        let j = Math.floor(Math.random() * (i + 1));
+let j=Math.floor(Math.random()*(i+1));
 
-        [copy[i],copy[j]] = [copy[j],copy[i]];
-    }
+[copy[i],copy[j]]=[copy[j],copy[i]];
 
-    return copy;
 }
 
-function displayTitles(titles){
+return copy;
 
-    const list = document.getElementById("titleList");
-    const results = document.getElementById("results");
-
-    list.innerHTML = "";
-
-    titles.forEach((title,index) => {
-
-        const card = document.createElement("div");
-
-        card.className = "title-card";
-
-        card.innerHTML = `
-            <div class="title-text">
-                <strong>${index + 1}.</strong> ${escapeHTML(title)}
-            </div>
-
-            <button class="copy"
-            onclick="copyText(this, ${JSON.stringify(title)})">
-                Copy
-            </button>
-        `;
-
-        list.appendChild(card);
-    });
-
-    results.style.display = "block";
-
-    results.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-    });
 }
 
-function escapeHTML(text){
+function generateTitles(){
 
-    return text
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+const topic=document.getElementById("topic").value.trim();
+const language=document.getElementById("language").value;
+const style=document.getElementById("style").value;
+
+if(!topic){
+
+alert("Please enter your video topic first.");
+return;
+
+}
+
+let selected=templates[style][language];
+
+let titles=selected.map(title=>{
+
+let prefix=topic;
+
+if(language==="english"){
+return prefix+" - "+title;
+}
+
+return prefix+" | "+title;
+
+});
+
+titles=shuffle(titles);
+
+const list=document.getElementById("titleList");
+
+list.innerHTML="";
+
+titles.forEach((title,index)=>{
+
+const card=document.createElement("div");
+
+card.className="title-card";
+
+card.innerHTML=`
+
+<div class="title-text">
+<strong>${index+1}.</strong>
+${escapeHTML(title)}
+</div>
+
+<button class="copy"
+onclick="copyText(this,${JSON.stringify(title)})">
+Copy
+</button>
+
+`;
+
+list.appendChild(card);
+
+});
+
+document.getElementById("results").style.display="block";
+
+document.getElementById("results").scrollIntoView({
+behavior:"smooth"
+});
+
 }
 
 function copyText(button,text){
 
-    navigator.clipboard.writeText(text)
-    .then(() => {
+navigator.clipboard.writeText(text).then(()=>{
 
-        button.textContent = "✓ Copied";
-        button.classList.add("copied");
+button.textContent="✓ Copied";
+button.classList.add("copied");
 
-        setTimeout(() => {
-            button.textContent = "Copy";
-            button.classList.remove("copied");
-        },1500);
+setTimeout(()=>{
 
-    })
-    .catch(() => {
+button.textContent="Copy";
+button.classList.remove("copied");
 
-        const temp = document.createElement("textarea");
-        temp.value = text;
+},1500);
 
-        document.body.appendChild(temp);
-        temp.select();
+});
 
-        document.execCommand("copy");
-
-        temp.remove();
-
-        button.textContent = "✓ Copied";
-
-        setTimeout(() => {
-            button.textContent = "Copy";
-        },1500);
-    });
 }
 
 function copyAll(){
 
-    const cards = document.querySelectorAll(".title-text");
+const cards=document.querySelectorAll(".title-text");
 
-    let all = [];
+let titles=[];
 
-    cards.forEach(card => {
+cards.forEach(card=>{
 
-        let text = card.innerText;
+let text=card.innerText.replace(/^\d+\.\s*/,"");
 
-        text = text.replace(/^\d+\.\s*/,"");
-
-        all.push(text);
-    });
-
-    const finalText = all.join("\n");
-
-    navigator.clipboard.writeText(finalText)
-    .then(() => {
-
-        const button = document.querySelector(".copy-all");
-
-        button.textContent = "✓ Copied All";
-
-        setTimeout(() => {
-            button.textContent = "📋 Copy All";
-        },1500);
-
-    });
-}
-
-document.getElementById("topic").addEventListener("keydown",function(e){
-
-    if(e.ctrlKey && e.key === "Enter"){
-        generateTitles();
-    }
+titles.push(text);
 
 });
+
+navigator.clipboard.writeText(titles.join("\n")).then(()=>{
+
+const button=document.querySelector(".copy-all");
+
+button.textContent="✓ Copied All";
+
+setTimeout(()=>{
+
+button.textContent="📋 Copy All";
+
+},1500);
+
+});
+
+}
 
 </script>
 
